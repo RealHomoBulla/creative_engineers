@@ -1,0 +1,18 @@
+
+#GamemodeOverhaul's command config settings
+[commands]
+	#Set this to false if you don't want the mod to add additional arguments to the '/gamemode' command
+	enableGamemode = true
+	#Set this to false if you don't want the mod to add the '/gm' command
+	enableGm = true
+	#Set this to false if you don't the mod to add '/gmc', '/gms', '/gmsp' and '/gma' commands
+	enableNoArgsGm = true
+	#Set this to false if you don't want the mod to add additional arguments to the '/defaultgamemode' command
+	enableDefaultGamemode = true
+	#Set this to false if you don't want the mod to add the '/dgm' command
+	enableDgm = false
+	#Set this to false if you don't want the mod to add the integer values for '/difficulty'
+	enableDifficulty = true
+	#Set this to false if you don't want to have the mod add '/toggledownfall' back
+	enableToggledownfall = true
+
