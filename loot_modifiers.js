@@ -155,17 +155,13 @@ LootJS.modifiers((event) => {
         .replaceLoot("galosphere:silver_ingot",   "immersiveengineering:ingot_silver")
         .replaceLoot("caverns_and_chasms:silver_ingot", "immersiveengineering:ingot_silver")
 
-    // Кожа — в ранних структурах (нужна для крафта, добывать неудобно)
+    // Кожа + верёвка — в ранних структурах (нужна для крафта, добывать неудобно)
     // Паттерн специально НЕ включает stronghold/castle — там поздняя игра
     event.addLootTableModifier(
-        /minecraft:chests\/(simple_dungeon|abandoned_mineshaft)|.*village.*(toolsmith|weaponsmith|armorer).*/
+        /minecraft:chests\/(simple_dungeon|abandoned_mineshaft)/
     )
         .addLoot(LootEntry.of("supplementaries:rope").when((c) => c.randomChance(0.1)))
         .addLoot(LootEntry.of("minecraft:leather", [2, 4]).when((c) => c.randomChance(0.20)))
-
-    event.addLootTableModifier(/.*village.*(toolsmith|weaponsmith|armorer).*/)
-        .addLoot(LootEntry.of("minecraft:leather", [3, 6]).when((c) => c.randomChance(0.25)))
-
 
     // =========================================================================
     //  ДАНЖИ / ПОДЗЕМЕЛЬЯ
@@ -358,8 +354,10 @@ LootJS.modifiers((event) => {
     //  ДЕРЕВНИ — кузнецы (toolsmith, weaponsmith, armorer)
     // =========================================================================
     event.addLootTableModifier(/.*village.*(toolsmith|weaponsmith|armorer).*/)
-        // --- Материалы ---
+        // --- Кожа + верёвка ---
+        .addLoot(LootEntry.of("minecraft:leather", [3, 6]).when((c) => c.randomChance(0.25)))
         .addLoot(LootEntry.of("supplementaries:rope").when((c) => c.randomChance(0.1)))
+        // --- Материалы ---
         .addLoot(LootEntry.of("create:andesite_alloy", [5, 10]).when((c) => c.randomChance(0.25)))
         .addLoot(LootEntry.of("create:cogwheel", [2, 4]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("create:shaft", [4, 8]).when((c) => c.randomChance(0.12)))
@@ -538,7 +536,7 @@ LootJS.modifiers((event) => {
     //  gtbcs = "Greater Than Before Craft Structures" — магические башни
     // =========================================================================
     event.addLootTableModifier(
-        /.*chests.*(mage|wizard|magic|arcane).*|.*(mage|wizard|magic|arcane).*chests.*|.*irons_spellbooks.*chests.*|.*chests.*irons_spellbooks.*|.*gtbcs.*chests.*|.*chests.*gtbcs.*/
+        /.*chests.*(mage|wizard|magic|arcane|irons_spellbooks|gtbcs).*|.*(mage|wizard|magic|arcane|irons_spellbooks|gtbcs).*chests.*/
     )
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 6]).when((c) => c.randomChance(0.15)))
@@ -641,7 +639,7 @@ LootJS.modifiers((event) => {
     //  НЕЗЕР — КРЕПОСТЬ (Nether Fortress / nether_bridge)
     // =========================================================================
     event.addLootTableModifier(
-        /.*chests.*(nether_bridge|nether.*fortress).*|.*(nether_bridge|nether.*fortress).*chests.*|minecraft:chests\/nether_bridge/
+        /.*chests.*(nether_bridge|nether.*fortress).*|.*(nether_bridge|nether.*fortress).*chests.*/
     )
         //enchantments — medium tier (нефортресс: был 6%, подтянут до 7%)
         .addLoot(enchantedBook(0.07, "medium"))
@@ -678,7 +676,7 @@ LootJS.modifiers((event) => {
     //  НЕЗЕР — Incendium / BygoneNether / InfernalExp
     // =========================================================================
     event.addLootTableModifier(
-        /.*incendium.*chests.*|.*chests.*incendium.*|.*bygonenether.*chests.*|.*chests.*bygonenether.*|.*infernalexp.*chests.*|.*chests.*infernalexp.*/
+        /.*chests.*(incendium|bygonenether|infernalexp).*|.*(incendium|bygonenether|infernalexp).*chests.*/
     )
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:netherite_arrow", [2, 4]).when((c) => c.randomChance(0.08)))
@@ -723,7 +721,7 @@ LootJS.modifiers((event) => {
     //  END CITY
     // =========================================================================
     event.addLootTableModifier(
-        /.*end_city.*chests.*|.*chests.*end_city.*|.*end.*city.*chests.*|.*chests.*end.*city.*/
+        /.*end.*city.*chests.*|.*chests.*end.*city.*/
     )
         //enchantments — epic tier
         .addLoot(enchantedBook(0.15, "epic"))
@@ -769,10 +767,10 @@ LootJS.modifiers((event) => {
 
 
     // =========================================================================
-    //  ДРЕВНИЙ ГОРОД (Quark override, Deep Dark City)
+    //  ДРЕВНИЙ ГОРОД (Ancient City, Deep Dark City)
     // =========================================================================
     event.addLootTableModifier(
-        /.*ancient.*chests.*|.*chests.*ancient.*|.*quark.*city.*|.*deep.*dark.*city.*/
+        /.*chests.*ancient.*city.*|.*ancient.*city.*chests.*|.*deep.*dark.*city.*/
     )
         //enchantments — epic tier
         .addLoot(enchantedBook(0.14, "epic"))
@@ -1068,7 +1066,7 @@ LootJS.modifiers((event) => {
     //  MOWZIE'S MOBS / ILLAGER INVASION
     // =========================================================================
     event.addLootTableModifier(
-        /.*mowziesmobs.*chests.*|.*chests.*mowziesmobs.*|.*illagerinvasion.*chests.*|.*chests.*illagerinvasion.*/
+        /.*chests.*(mowziesmobs|illagerinvasion).*|.*(mowziesmobs|illagerinvasion).*chests.*/
     )
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 6]).when((c) => c.randomChance(0.15)))
@@ -1206,7 +1204,7 @@ LootJS.modifiers((event) => {
     //  (Bridges, Extras, Better Dungeons, Mineshafts, Fortresses, Temples, etc.)
     // =========================================================================
     event.addLootTableModifier(
-        /.*yungsbridges.*chests.*|.*chests.*yungsbridges.*|.*yungsextras.*chests.*|.*chests.*yungsextras.*|.*betterdungeons.*chests.*|.*chests.*betterdungeons.*|.*bettermineshafts.*chests.*|.*chests.*bettermineshafts.*|.*betterfortresses.*chests.*|.*chests.*betterfortresses.*|.*betterjungletemples.*chests.*|.*chests.*betterjungletemples.*|.*betterdeserttemples.*chests.*|.*chests.*betterdeserttemples.*|.*betteroceanmonuments.*chests.*|.*chests.*betteroceanmonuments.*/
+        /.*chests.*(yungsbridges|yungsextras|betterdungeons|bettermineshafts|betterfortresses|betterjungletemples|betterdeserttemples|betteroceanmonuments).*|.*(yungsbridges|yungsextras|betterdungeons|bettermineshafts|betterfortresses|betterjungletemples|betterdeserttemples|betteroceanmonuments).*chests.*/
     )
         //enchantments — easy tier
         .addLoot(enchantedBook(0.05, "easy"))
@@ -1239,7 +1237,7 @@ LootJS.modifiers((event) => {
     //  (Takes a Pillage, Create Pillagers, Savage and Ravage)
     // =========================================================================
     event.addLootTableModifier(
-        /.*takesapillage.*chests.*|.*chests.*takesapillage.*|.*create_pillagers.*chests.*|.*chests.*create_pillagers.*|.*savage_and_ravage.*chests.*|.*chests.*savage_and_ravage.*/
+        /.*chests.*(takesapillage|create_pillagers|savage_and_ravage).*|.*(takesapillage|create_pillagers|savage_and_ravage).*chests.*/
     )
         //enchantments — easy tier
         .addLoot(enchantedBook(0.05, "easy"))
