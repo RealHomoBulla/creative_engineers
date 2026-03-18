@@ -1,0 +1,20 @@
+
+[general]
+	"Enable Insert" = true
+	"Enable Drop Off" = true
+	"Enable Extract" = true
+	"Enable Pick Up" = true
+	"Ignore Hotbar" = true
+	"Highlight containers" = true
+	"Show inventory button" = true
+	#Range: > -1
+	"Highlight delay" = 3000
+	#Range: > 0
+	"Minimum Slots" = 6
+	#Range: > -2147483648
+	"Survival inventory button X offset" = 0
+	#Range: > -2147483648
+	"Survival inventory button Y offset" = 0
+	"Blacklisted Block Entities" = ["minecraft:furnace", "minecraft:blast_furnace", "minecraft:smoker"]
+	"Whitelisted containers" = []
+

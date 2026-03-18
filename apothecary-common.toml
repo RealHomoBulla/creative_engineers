@@ -1,0 +1,240 @@
+
+[General]
+	#Enable world events (effects being able to occur in the world outside of potions)
+	World_Events = true
+	#Max stack size of potions
+	#Range: 1 ~ 64
+	Stack_Size = 1
+	#Disable ice and fire compat
+	Disable = false
+
+[Potions]
+
+	[Potions.Iron_Skin]
+		#Enable the iron skin potion recipe
+		Enable = true
+		#Main ingredient used to brew iron skin potions
+		Ingredient = "minecraft:iron_block"
+		#Armor points provided by iron skin potions
+		Armor_Increase = 4
+
+	[Potions.Broken_Armor]
+		#Enable the broken armor potion recipe
+		Enable = true
+		#Main ingredient used to brew broken armor potions
+		Ingredient = "minecraft:fermented_spider_eye"
+		#Armor points decreased by broken armor potions
+		Armor_Decrease = 4
+
+	[Potions.Diamond_Skin]
+		#Enable the diamond skin potion recipe
+		Enable = true
+		#Main ingredient used to brew diamond skin potions
+		Ingredient = "minecraft:diamond_block"
+		#Armor toughness points provided by diamond skin potions
+		Armor_Toughness_Increase = 4
+
+	[Potions.Ruptured_Armor]
+		#Enable the ruptured armor potion recipe
+		Enable = true
+		#Main ingredient used to brew ruptured armor potions
+		Ingredient = "minecraft:fermented_spider_eye"
+		#Armor toughness points decreased by ruptured armor potions
+		Armor_Toughness_Decrease = 4
+
+	[Potions.Archery]
+		#Enable the archery potion recipe
+		Enable = true
+		#Main ingredient used to brew archery potions
+		Ingredient = "minecraft:skeleton_skull"
+		#Damage increase provided by archery potions
+		Damage_Increase = 3
+
+	[Potions.Misfire]
+		#Enable the misfire potion recipe
+		Enable = true
+		#Main ingredient used to brew misfire potions
+		Ingredient = "minecraft:fermented_spider_eye"
+		#Damage decrease provided by misfire potions
+		Damage_Decrease = 4
+
+	[Potions.Wrath]
+		#Enable the wrath potion recipe
+		Enable = true
+		#Main ingredient used to brew wrath potions
+		Ingredient = "minecraft:crimson_fungus"
+		#Damage increase provided by wrath potions in percentage
+		Damage_Increase = 0.1
+
+	[Potions.Feeble]
+		#Enable the feeble potion recipe
+		Enable = true
+		#Main ingredient used to brew feeble potions
+		Ingredient = "minecraft:fermented_spider_eye"
+		#Damage decrease provided by feeble potions in percentage
+		Damage_Decrease = 0.1
+
+	[Potions.Vulnerable]
+		#Enable the vulnerable potion recipe
+		Enable = true
+		#Main ingredient used to brew vulnerable potions
+		Ingredient = "minecraft:fermented_spider_eye"
+		#Increased damage taken provided by vulnerable potions in percentage
+		Damage_Taken = 0.2
+
+	[Potions.Flight]
+		#Enable the flight potion recipe
+		Enable = true
+		#Main ingredient used to brew flight potions
+		Ingredient = "minecraft:dragon_head"
+
+	[Potions.Reach]
+		#Enable the reach potion recipe
+		Enable = true
+		#Main ingredient used to brew reach potions
+		Ingredient = "minecraft:end_rod"
+		#Reach distance increased by reach potions
+		Reach_Increase = 1
+
+	[Potions.Repairing]
+		#Enable the repairing potion recipe
+		Enable = true
+		#Main ingredient used to brew repairing potions
+		Ingredient = "minecraft:anvil"
+		#Repair amount provided by repairing potions
+		Repair_Amount = 1
+
+	[Potions.Corrosion]
+		#Enable the corrosion potion recipe
+		Enable = true
+		#Main ingredient used to brew corrosion potions
+		Ingredient = "minecraft:fermented_spider_eye"
+		#Corrosion amount provided by corrosion potions
+		Corrosion_Amount = 1
+
+	[Potions.Magic_Power]
+		#Enable the magic power potion recipe
+		Enable = true
+		#Main ingredient used to brew magic power potions
+		Ingredient = "irons_spellbooks:arcane_essence"
+		#Damage increase provided by magic power potions in percentage
+		Magic_Power_Increase = 0.1
+
+	[Potions.Magic_Drain]
+		#Enable the magic drain potion recipe
+		Enable = true
+		#Main ingredient used to brew magic drain potions
+		Ingredient = "irons_spellbooks:arcane_essence"
+		#Damage decrease provided by magic drain potions in percentage
+		Magic_Drain_Increase = 0.1
+
+	[Potions.Thorns]
+		#Enable the thorns potion recipe
+		Enable = true
+		#Main ingredient used to brew thorns potions
+		Ingredient = "minecraft:cactus"
+		#Damage reflected by thorns potions in percentage
+		Damage_Reflected = 0.2
+
+	[Potions.Confusion]
+		#Enable the confusion potion recipe
+		Enable = true
+		#Main ingredient used to brew thorns potions
+		Ingredient = "minecraft:sniffer_egg"
+
+	[Potions.Purification]
+		#Enable the purification potion recipe
+		Enable = true
+		#Main ingredient used to brew purification potions
+		Ingredient = "minecraft:heart_of_the_sea"
+		#List of effects to blacklist being immune to from the purification effect (e.g., minecraft:poison, minecraft:slowness etc)
+		Purification_Blacklist_Effects = []
+
+	[Potions.Corruption]
+		#Enable the corruption potion recipe
+		Enable = true
+		#Main ingredient used to brew corruption potions
+		Ingredient = "minecraft:fermented_spider_eye"
+		#List of effects to blacklist being immune to from the corruption effect (e.g., minecraft:strength, minecraft:speed etc)
+		Corruption_Blacklist_Effects = []
+
+	[Potions.Shuffling]
+		#Enable the shuffling potion recipe
+		Enable = true
+		#Main ingredient used to brew shuffling potions
+		Ingredient = "minecraft:trapped_chest"
+
+	[Potions.Burning]
+		#Enable the burning potion recipe
+		Enable = true
+		#Main ingredient used to brew burning potions
+		Ingredient = "minecraft:magma_block"
+
+	[Potions.Shocked]
+		#Enable the shocked potion recipe
+		Enable = true
+		#Main ingredient used to brew shocked potions
+		Ingredient = "minecraft:copper_block"
+		#Amount of movement speed reduction for the shocked effect
+		Shocked_Speed_Decrease = 0.5
+
+	[Potions.Lightning]
+		#Enable the lightning potion recipe
+		Enable = true
+		#Main ingredient used to brew lightning potions
+		Ingredient = "minecraft:lightning_rod"
+
+	[Potions.Spelunker]
+		#Enable the spelunker potion recipe
+		Enable = true
+		#Main ingredient used to brew spelunker potions
+		Ingredient = "minecraft:raw_gold_block"
+		#List of ores that the spelunker effect can detect (e.g., minecraft:iron_ore, minecraft:gold_ore etc)
+		Spelunker_Ore_List = []
+
+	[Potions.Extension]
+		#Enable the extension potion recipe
+		Enable = true
+		#Main ingredient used to brew extension potions
+		Ingredient = "minecraft:amethyst_cluster"
+		#List of effects to blacklist being extended from the extension effect (e.g., minecraft:jump_boost, minecraft:water_breathing etc)
+		Extension_Blacklist_Effects = []
+		#Max duration cap for the extension effect to increase in seconds
+		Extension_Cap = 600
+
+	[Potions.Reversion]
+		#Enable the reversion potion recipe
+		Enable = true
+		#Main ingredient used to brew reversion potions
+		Ingredient = "minecraft:fermented_spider_eye"
+
+	[Potions.Health_Boost]
+		#Enable the health boost potion recipe
+		Enable = true
+		#Main ingredient used to brew health boost potions
+		Ingredient = "minecraft:golden_apple"
+
+	[Potions.Luck]
+		#Enable the luck potion recipe
+		Enable = true
+		#Main ingredient used to brew luck potions
+		Ingredient = "minecraft:emerald_block"
+
+	[Potions.Resistance]
+		#Enable the resistance potion recipe
+		Enable = true
+		#Main ingredient used to brew resistance potions
+		Ingredient = "minecraft:warped_fungus"
+
+	[Potions.Wither]
+		#Enable the wither potion recipe
+		Enable = true
+		#Main ingredient used to brew wither potions
+		Ingredient = "minecraft:wither_rose"
+
+[World_Events]
+	#Amount of apothecary potions witches can throw before they default back to vanilla potions.
+	Witch_Potion_Count = 1
+	#Cooldown for witches to be able to throw apothecary potions again after the potion count has been reached in seconds
+	Witch_Potion_Cooldown = 5
+

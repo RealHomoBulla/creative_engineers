@@ -1,0 +1,9 @@
+
+[General]
+	#Enable potions having enchanted glow
+	Glow = false
+	#Enable potion descriptions as tooltips
+	Descriptions = false
+	#Shows information about what the potions do in their tooltips
+	Additional_Tooltips = true
+
