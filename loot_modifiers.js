@@ -27,7 +27,7 @@ LootJS.modifiers((event) => {
             .addLoot(LootEntry.of("travelertoolbelt:belt").when((c) => c.randomChance(0.08)))
             .addLoot(LootEntry.of("travelertoolbelt:copper_belt").when((c) => c.randomChance(0.05)))
             .addLoot(LootEntry.of("comforts:sleeping_bag_black").when((c) => c.randomChance(0.10)))
-            .addLoot(LootEntry.of("sophisticatedbackpacks:upgrade_base", 2).when((c) => c.randomChance(0.12)))
+            .addLoot(LootEntry.of("sophisticatedbackpacks:upgrade_base", [1, 2]).when((c) => c.randomChance(0.12)))
             .addLoot(LootEntry.of("sophisticatedbackpacks:copper_backpack").when((c) => c.randomChance(0.06)))
             .addLoot(LootEntry.of("sophisticatedbackpacks:stack_upgrade_starter_tier").when((c) => c.randomChance(0.08)))
             .addLoot(LootEntry.of("waystones:warp_scroll").when((c) => c.randomChance(0.06)))
@@ -45,7 +45,7 @@ LootJS.modifiers((event) => {
             .addLoot(LootEntry.of("functionalstorage:gold_upgrade").when((c) => c.randomChance(0.03)))
             .addLoot(LootEntry.of("ironchests:copper_chest").when((c) => c.randomChance(0.04)))
             .addLoot(LootEntry.of("ironchests:iron_chest").when((c) => c.randomChance(0.02)))
-            .addLoot(LootEntry.of("waystones:warp_scroll", 2).when((c) => c.randomChance(0.10)))
+            .addLoot(LootEntry.of("waystones:warp_scroll", [1, 2]).when((c) => c.randomChance(0.10)))
             .addLoot(LootEntry.of("waystones:return_scroll").when((c) => c.randomChance(0.08)))
             //enchantments — medium tier
             .addLoot(enchantedBook(0.08, "medium"))
@@ -56,17 +56,17 @@ LootJS.modifiers((event) => {
         // tier: "early" | "mid" | "late"
         if (tier === "early") {
             return mod
-                .addLoot(LootEntry.of("create:experience_nugget", 8).when((c) => c.randomChance(0.20)))
+                .addLoot(LootEntry.of("create:experience_nugget", [4, 8]).when((c) => c.randomChance(0.20)))
         }
         if (tier === "mid") {
             return mod
-                .addLoot(LootEntry.of("create:experience_nugget", 8).when((c) => c.randomChance(0.20)))
+                .addLoot(LootEntry.of("create:experience_nugget", [4, 8]).when((c) => c.randomChance(0.20)))
                 .addLoot(LootEntry.of("create:experience_block").when((c) => c.randomChance(0.05)))
                 .addLoot(LootEntry.of("xpbook:xp_tome").when((c) => c.randomChance(0.03)))
         }
         if (tier === "late") {
             return mod
-                .addLoot(LootEntry.of("create:experience_block", 2).when((c) => c.randomChance(0.10)))
+                .addLoot(LootEntry.of("create:experience_block", [1, 2]).when((c) => c.randomChance(0.10)))
                 .addLoot(LootEntry.of("xpbook:xp_tome").when((c) => c.randomChance(0.06)))
         }
         return mod
@@ -75,11 +75,11 @@ LootJS.modifiers((event) => {
     // Create/IE базовые материалы — ранний крафт
     const addEarlyCraftMats = (mod) => {
         return mod
-            .addLoot(LootEntry.of("create:andesite_alloy", 6).when((c) => c.randomChance(0.18)))
-            .addLoot(LootEntry.of("create:builders_tea", 2).when((c) => c.randomChance(0.12)))
-            .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", 10).when((c) => c.randomChance(0.18)))
-            .addLoot(LootEntry.of("immersiveengineering:ingot_lead", 3).when((c) => c.randomChance(0.15)))
-            .addLoot(LootEntry.of("rubberworks:rubber", 5).when((c) => c.randomChance(0.12)))
+            .addLoot(LootEntry.of("create:andesite_alloy", [3, 6]).when((c) => c.randomChance(0.18)))
+            .addLoot(LootEntry.of("create:builders_tea", [1, 2]).when((c) => c.randomChance(0.12)))
+            .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", [5, 10]).when((c) => c.randomChance(0.18)))
+            .addLoot(LootEntry.of("immersiveengineering:ingot_lead", [2, 3]).when((c) => c.randomChance(0.15)))
+            .addLoot(LootEntry.of("rubberworks:rubber", [3, 5]).when((c) => c.randomChance(0.12)))
     }
 
     // Apotheosis тома — общий для магических/поздних локаций
@@ -161,10 +161,10 @@ LootJS.modifiers((event) => {
         /minecraft:chests\/(simple_dungeon|abandoned_mineshaft)|.*village.*(toolsmith|weaponsmith|armorer).*/
     )
         .addLoot(LootEntry.of("supplementaries:rope").when((c) => c.randomChance(0.1)))
-        .addLoot(LootEntry.of("minecraft:leather", 4).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("minecraft:leather", [2, 4]).when((c) => c.randomChance(0.20)))
 
     event.addLootTableModifier(/.*village.*(toolsmith|weaponsmith|armorer).*/)
-        .addLoot(LootEntry.of("minecraft:leather", 6).when((c) => c.randomChance(0.25)))
+        .addLoot(LootEntry.of("minecraft:leather", [3, 6]).when((c) => c.randomChance(0.25)))
 
 
     // =========================================================================
@@ -176,57 +176,57 @@ LootJS.modifiers((event) => {
         /.*chests.*(dungeon|abandoned|monastery|catacomb|crypt|grave(?!yard)|graveyard).*|.*(dungeon|abandoned|monastery|catacomb|crypt|grave(?!yard)|graveyard).*chests.*/
     )
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 16).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 8).when((c) => c.randomChance(0.1)))
-        .addLoot(LootEntry.of("archeryexp:diamond_arrow", 4).when((c) => c.randomChance(0.03)))
-        .addLoot(LootEntry.of("quark:torch_arrow", 6).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [8, 16]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [4, 8]).when((c) => c.randomChance(0.1)))
+        .addLoot(LootEntry.of("archeryexp:diamond_arrow", [2, 4]).when((c) => c.randomChance(0.03)))
+        .addLoot(LootEntry.of("quark:torch_arrow", [3, 6]).when((c) => c.randomChance(0.20)))
         // Мушкетные патроны — редко, подходит тематически
-        .addLoot(LootEntry.of("musketmod:cartridge", 2).when((c) => c.randomChance(0.06)))
+        .addLoot(LootEntry.of("musketmod:cartridge", [1, 2]).when((c) => c.randomChance(0.06)))
         // --- Еда ---
-        .addLoot(LootEntry.of("farmersdelight:beef_stew", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("farmersdelight:chicken_soup", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("farmersdelight:beef_stew", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("farmersdelight:chicken_soup", [1, 2]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("brewinandchewin:ham_and_cheese_sandwich").when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("brewinandchewin:creamy_onion_soup").when((c) => c.randomChance(0.10)))
         // Пиво/эль — подземные стражи пили что попроще
-        .addLoot(LootEntry.of("brewinandchewin:beer", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("brewinandchewin:steel_toe_stout", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("brewinandchewin:beer", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("brewinandchewin:steel_toe_stout", [1, 2]).when((c) => c.randomChance(0.10)))
         // Водка убрана из данжей — тематически не подходит
-        .addLoot(LootEntry.of("miners_delight:cave_soup", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("miners_delight:cave_soup", [1, 2]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("miners_delight:insect_stew").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("miners_delight:smoked_bat_wing", 3).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("miners_delight:smoked_bat_wing", [2, 3]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("miners_delight:bat_soup").when((c) => c.randomChance(0.08)))
-        .addLoot(LootEntry.of("galospheric_delight:cave_barbecue_stick", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("galospheric_delight:cave_barbecue_stick", [1, 2]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("galospheric_delight:cave_pizza").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("galospheric_delight:salted_fish", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("galospheric_delight:salted_caramel", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("galospheric_delight:salted_caramel_cake_slice", 2).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("galospheric_delight:salted_fish", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("galospheric_delight:salted_caramel", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("galospheric_delight:salted_caramel_cake_slice", [1, 2]).when((c) => c.randomChance(0.08)))
         .addLoot(LootEntry.of("galospheric_delight:salted_caramel_cake").when((c) => c.randomChance(0.03)))
-        .addLoot(LootEntry.of("largemeals:potato_soup", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("largemeals:potato_soup", [1, 2]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("largemeals:cod_deluxe").when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("largemeals:cooked_mutton_rack").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("farmersrespite:black_tea", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("farmersrespite:coffee_beans", 3).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("create:builders_tea", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("farmersdelight:fried_egg", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("farmersdelight:rich_soil", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("farmersdelight:organic_compost", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("farmersrespite:black_tea", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("farmersrespite:coffee_beans", [2, 3]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create:builders_tea", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersdelight:fried_egg", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("farmersdelight:rich_soil", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersdelight:organic_compost", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Крафт-материалы (ранний старт) ---
-        .addLoot(LootEntry.of("create:andesite_alloy", 6).when((c) => c.randomChance(0.18)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", 10).when((c) => c.randomChance(0.18)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", 3).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("rubberworks:rubber", 5).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 2).when((c) => c.randomChance(0.05)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [3, 6]).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", [5, 10]).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", [2, 3]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("rubberworks:rubber", [3, 5]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [1, 2]).when((c) => c.randomChance(0.05)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.02)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.08)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_nugget", 8).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("create:experience_nugget", [4, 8]).when((c) => c.randomChance(0.20)))
         // --- Утилити (ранний тир) ---
         .addLoot(LootEntry.of("travelertoolbelt:belt").when((c) => c.randomChance(0.08)))
         .addLoot(LootEntry.of("travelertoolbelt:copper_belt").when((c) => c.randomChance(0.05)))
         .addLoot(LootEntry.of("comforts:sleeping_bag_black").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("sophisticatedbackpacks:upgrade_base", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("sophisticatedbackpacks:upgrade_base", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("sophisticatedbackpacks:copper_backpack").when((c) => c.randomChance(0.06)))
         .addLoot(LootEntry.of("sophisticatedbackpacks:stack_upgrade_starter_tier").when((c) => c.randomChance(0.08)))
         .addLoot(LootEntry.of("functionalstorage:copper_upgrade").when((c) => c.randomChance(0.08)))
@@ -240,20 +240,20 @@ LootJS.modifiers((event) => {
     // =========================================================================
     event.addLootTableModifier(/.*chests.*ruin.*|.*ruin.*chests.*/)
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 10).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 5).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [5, 10]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 5]).when((c) => c.randomChance(0.12)))
         // --- Еда ---
-        .addLoot(LootEntry.of("vintagedelight:pickled_onion", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("vintagedelight:pickled_onion", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("vintagedelight:vinegar_mason_jar").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("create:builders_tea", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:builders_tea", [1, 2]).when((c) => c.randomChance(0.12)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:andesite_alloy", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", 3).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", 8).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("rubberworks:rubber", 4).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", [2, 3]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", [4, 8]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("rubberworks:rubber", [2, 4]).when((c) => c.randomChance(0.10)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Утилити ---
         .addLoot(LootEntry.of("comforts:sleeping_bag_black").when((c) => c.randomChance(0.08)))
         .addLoot(LootEntry.of("travelertoolbelt:belt").when((c) => c.randomChance(0.06)))
@@ -267,23 +267,23 @@ LootJS.modifiers((event) => {
         /.*chests.*(camp|bandit|raider|outlaw|expedition|tent).*|.*(camp|bandit|raider|outlaw|expedition|tent).*chests.*/
     )
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 12).when((c) => c.randomChance(0.25)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [6, 12]).when((c) => c.randomChance(0.25)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 6]).when((c) => c.randomChance(0.12)))
         // Патроны — бандиты могут иметь мушкеты
-        .addLoot(LootEntry.of("musketmod:cartridge", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("musketmod:cartridge", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Еда ---
-        .addLoot(LootEntry.of("farmersdelight:beef_stew", 2).when((c) => c.randomChance(0.18)))
-        .addLoot(LootEntry.of("farmersdelight:roast_chicken", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("farmersdelight:beef_stew", [1, 2]).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("farmersdelight:roast_chicken", [1, 2]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("brewinandchewin:ham_and_cheese_sandwich").when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("brewinandchewin:beer", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("brewinandchewin:beer", [1, 2]).when((c) => c.randomChance(0.15)))
         // Водка у бандитов — логично
         .addLoot(LootEntry.of("brewinandchewin:vodka").when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("brewinandchewin:steel_toe_stout", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("brewinandchewin:steel_toe_stout", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("largemeals:cooked_mutton_rack").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("create:builders_tea", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create:builders_tea", [1, 2]).when((c) => c.randomChance(0.15)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 4).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("numismatics:spur", [2, 4]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.08)))
         // --- Утилити ---
         .addLoot(LootEntry.of("comforts:sleeping_bag_black").when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("travelertoolbelt:belt").when((c) => c.randomChance(0.08)))
@@ -295,19 +295,19 @@ LootJS.modifiers((event) => {
     // =========================================================================
     event.addLootTableModifier(/.*chests.*(hut|shack|witch).*|.*(hut|shack|witch).*chests.*/)
         // --- Еда ---
-        .addLoot(LootEntry.of("farmersdelight:beef_stew", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("farmersdelight:beef_stew", [1, 2]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("brewinandchewin:creamy_onion_soup").when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("brewinandchewin:kombucha", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("farmersrespite:green_tea", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("farmersrespite:tea_seeds", 3).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("brewinandchewin:kombucha", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersrespite:green_tea", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("farmersrespite:tea_seeds", [2, 3]).when((c) => c.randomChance(0.18)))
         .addLoot(LootEntry.of("vintagedelight:honey_mason_jar").when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("vintagedelight:overnight_oats", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("vintagedelight:overnight_oats", [1, 2]).when((c) => c.randomChance(0.12)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:tree_fertilizer", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 2).when((c) => c.randomChance(0.06)))
+        .addLoot(LootEntry.of("create:tree_fertilizer", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [1, 2]).when((c) => c.randomChance(0.06)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.08)))
 
 
     // =========================================================================
@@ -317,30 +317,30 @@ LootJS.modifiers((event) => {
         /.*chests.*(tower|watchtower|fort|barracks).*|.*(tower|watchtower|fort|barracks).*chests.*/
     )
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 12).when((c) => c.randomChance(0.25)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.18)))
-        .addLoot(LootEntry.of("archeryexp:diamond_arrow", 3).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [6, 12]).when((c) => c.randomChance(0.25)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 6]).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("archeryexp:diamond_arrow", [2, 3]).when((c) => c.randomChance(0.10)))
         // Патроны — у стражников могут быть мушкеты
-        .addLoot(LootEntry.of("musketmod:cartridge", 2).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("musketmod:cartridge", [1, 2]).when((c) => c.randomChance(0.08)))
         // Ядра пушек — убраны из башен, оставлены только для кораблей/крепостей
         // --- Еда ---
-        .addLoot(LootEntry.of("farmersdelight:roast_chicken", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersdelight:roast_chicken", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("brewinandchewin:flaxen_cheese_wheel").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("brewinandchewin:steel_toe_stout", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("create:builders_tea", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("brewinandchewin:steel_toe_stout", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:builders_tea", [1, 2]).when((c) => c.randomChance(0.12)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:andesite_alloy", 4).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", 12).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fabric", 4).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [2, 4]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", [6, 12]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fabric", [2, 4]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.02)))
         .addLoot(LootEntry.of("immersiveengineering:hammer").when((c) => c.randomChance(0.04)))
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 2).when((c) => c.randomChance(0.05)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [1, 2]).when((c) => c.randomChance(0.05)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.01)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 3).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.01)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [2, 3]).when((c) => c.randomChance(0.12)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_nugget", 8).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("create:experience_nugget", [4, 8]).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("create:experience_block").when((c) => c.randomChance(0.05)))
         .addLoot(LootEntry.of("xpbook:xp_tome").when((c) => c.randomChance(0.03)))
         // --- Утилити (средний тир) ---
@@ -350,7 +350,7 @@ LootJS.modifiers((event) => {
         .addLoot(LootEntry.of("sophisticatedbackpacks:stack_upgrade_tier_1").when((c) => c.randomChance(0.05)))
         .addLoot(LootEntry.of("ironchests:copper_chest").when((c) => c.randomChance(0.04)))
         .addLoot(LootEntry.of("ironchests:iron_chest").when((c) => c.randomChance(0.02)))
-        .addLoot(LootEntry.of("waystones:warp_scroll", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("waystones:warp_scroll", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("waystones:return_scroll").when((c) => c.randomChance(0.08)))
 
 
@@ -360,27 +360,27 @@ LootJS.modifiers((event) => {
     event.addLootTableModifier(/.*village.*(toolsmith|weaponsmith|armorer).*/)
         // --- Материалы ---
         .addLoot(LootEntry.of("supplementaries:rope").when((c) => c.randomChance(0.1)))
-        .addLoot(LootEntry.of("create:andesite_alloy", 10).when((c) => c.randomChance(0.25)))
-        .addLoot(LootEntry.of("create:cogwheel", 4).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("create:shaft", 8).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [5, 10]).when((c) => c.randomChance(0.25)))
+        .addLoot(LootEntry.of("create:cogwheel", [2, 4]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:shaft", [4, 8]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("create:millstone").when((c) => c.randomChance(0.08)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", 10).when((c) => c.randomChance(0.18)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fabric", 3).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_nickel", 5).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_aluminum", 3).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", 3).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_constantan", 3).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_steel", 3).when((c) => c.randomChance(0.07)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_electrum", 2).when((c) => c.randomChance(0.04)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", [5, 10]).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fabric", [2, 3]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_nickel", [3, 5]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_aluminum", [2, 3]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", [2, 3]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_constantan", [2, 3]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_steel", [2, 3]).when((c) => c.randomChance(0.07)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_electrum", [1, 2]).when((c) => c.randomChance(0.04)))
         .addLoot(LootEntry.of("immersiveengineering:hammer").when((c) => c.randomChance(0.06)))
         .addLoot(LootEntry.of("immersiveengineering:creosote_bucket").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("rubberworks:rubber", 5).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("rubberworks:rubber", [3, 5]).when((c) => c.randomChance(0.12)))
         // --- Семена / еда ---
-        .addLoot(LootEntry.of("create:tree_fertilizer", 3).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("farmersrespite:tea_seeds", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("farmersrespite:coffee_beans", 4).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:tree_fertilizer", [2, 3]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("farmersrespite:tea_seeds", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersrespite:coffee_beans", [2, 4]).when((c) => c.randomChance(0.12)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.15)))
         // --- Утилити ---
         .addLoot(LootEntry.of("travelertoolbelt:belt").when((c) => c.randomChance(0.06)))
         .addLoot(LootEntry.of("travelertoolbelt:copper_belt").when((c) => c.randomChance(0.04)))
@@ -394,50 +394,50 @@ LootJS.modifiers((event) => {
     )
         // --- Еда и напитки ---
         .addLoot(LootEntry.of("supplementaries:rope").when((c) => c.randomChance(0.1)))
-        .addLoot(LootEntry.of("create:honeyed_apple", 3).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("create:sweet_roll", 3).when((c) => c.randomChance(0.18)))
-        .addLoot(LootEntry.of("create:builders_tea", 2).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("create_confectionery:bar_of_black_chocolate", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("create_confectionery:cocoa_powder", 4).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("create_confectionery:gingerbread", 3).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("farmersrespite:tea_seeds", 4).when((c) => c.randomChance(0.18)))
-        .addLoot(LootEntry.of("farmersrespite:green_tea", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("farmersrespite:black_tea", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("farmersdelight:rich_soil", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("farmersdelight:organic_compost", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("farmersdelight:milk_bottle", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("farmersdelight:fried_egg", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("culturaldelights:avocado", 3).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("culturaldelights:cucumber", 4).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("culturaldelights:pickle", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("culturaldelights:smoked_tomato", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("culturaldelights:corn_cob", 4).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("culturaldelights:hearty_salad", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("culturaldelights:beef_burrito", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("culturaldelights:chicken_taco", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create:honeyed_apple", [2, 3]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("create:sweet_roll", [2, 3]).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("create:builders_tea", [1, 2]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("create_confectionery:bar_of_black_chocolate", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create_confectionery:cocoa_powder", [2, 4]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create_confectionery:gingerbread", [2, 3]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("farmersrespite:tea_seeds", [2, 4]).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("farmersrespite:green_tea", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersrespite:black_tea", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersdelight:rich_soil", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersdelight:organic_compost", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("farmersdelight:milk_bottle", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("farmersdelight:fried_egg", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("culturaldelights:avocado", [2, 3]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("culturaldelights:cucumber", [2, 4]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("culturaldelights:pickle", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("culturaldelights:smoked_tomato", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("culturaldelights:corn_cob", [2, 4]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("culturaldelights:hearty_salad", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("culturaldelights:beef_burrito", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("culturaldelights:chicken_taco", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("brewinandchewin:tankard").when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("brewinandchewin:beer", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("brewinandchewin:kombucha", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("brewinandchewin:flaxen_cheese_wedge", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("brewinandchewin:pizza_slice", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("brewinandchewin:kimchi", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("vintagedelight:pickled_onion", 3).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("vintagedelight:pickled_pepper", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("vintagedelight:overnight_oats", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("brewinandchewin:beer", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("brewinandchewin:kombucha", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("brewinandchewin:flaxen_cheese_wedge", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("brewinandchewin:pizza_slice", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("brewinandchewin:kimchi", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("vintagedelight:pickled_onion", [2, 3]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("vintagedelight:pickled_pepper", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("vintagedelight:overnight_oats", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("vintagedelight:vinegar_mason_jar").when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("vintagedelight:honey_mason_jar").when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("vintagedelight:nut_milk_bottle").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("vintagedelight:cucumber_salad", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("vintagedelight:cucumber_salad", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("vintagedelight:deluxe_burger").when((c) => c.randomChance(0.08)))
-        .addLoot(LootEntry.of("largemeals:potato_soup", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("largemeals:potato_soup", [1, 2]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("largemeals:cooked_mutton_rack").when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("largemeals:chicken_curry").when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("largemeals:pasta_with_mushroom_sauce").when((c) => c.randomChance(0.08)))
-        .addLoot(LootEntry.of("largemeals:rice_pudding", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("largemeals:rice_pudding", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Удобрения / семена ---
-        .addLoot(LootEntry.of("create:tree_fertilizer", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:tree_fertilizer", [1, 2]).when((c) => c.randomChance(0.12)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.18)))
 
 
     // =========================================================================
@@ -448,20 +448,20 @@ LootJS.modifiers((event) => {
         /.*chests.*(stronghold|castle|knight).*|.*(stronghold|castle|knight).*chests.*/
     )
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 12).when((c) => c.randomChance(0.25)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.18)))
-        .addLoot(LootEntry.of("archeryexp:diamond_arrow", 3).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("musketmod:cartridge", 2).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [6, 12]).when((c) => c.randomChance(0.25)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 6]).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("archeryexp:diamond_arrow", [2, 3]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("musketmod:cartridge", [1, 2]).when((c) => c.randomChance(0.08)))
         // Пушки в замках — логично
-        .addLoot(LootEntry.of("smallships:cannon_ball", 4).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("smallships:cannon_ball", [2, 4]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("smallships:cannon").when((c) => c.randomChance(0.03)))
         // --- Еда ---
-        .addLoot(LootEntry.of("farmersdelight:roast_chicken", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersdelight:roast_chicken", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("brewinandchewin:flaxen_cheese_wheel").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("brewinandchewin:vodka", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("brewinandchewin:steel_toe_stout", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("largemeals:cooked_mutton_rack", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("largemeals:potato_soup", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("brewinandchewin:vodka", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("brewinandchewin:steel_toe_stout", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("largemeals:cooked_mutton_rack", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("largemeals:potato_soup", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("largemeals:chicken_curry").when((c) => c.randomChance(0.10)))
         // Пир в замке — редкий блок с едой
         .addLoot(LootEntry.of("largemeals:roasted_mutton_rack_block").when((c) => c.randomChance(0.01)))
@@ -469,20 +469,20 @@ LootJS.modifiers((event) => {
         .addLoot(LootEntry.of("vintagedelight:vinegar_bottle").when((c) => c.randomChance(0.10)))
         // century_egg убрано из замков — не тематично для средневекового западного сеттинга
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:andesite_alloy", 4).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:treated_wood_horizontal", 3).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", 12).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fabric", 4).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [2, 4]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:treated_wood_horizontal", [2, 3]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", [6, 12]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fabric", [2, 4]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.03)))
         .addLoot(LootEntry.of("immersiveengineering:hammer").when((c) => c.randomChance(0.04)))
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 2).when((c) => c.randomChance(0.05)))
-        .addLoot(LootEntry.of("create:builders_tea", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [1, 2]).when((c) => c.randomChance(0.05)))
+        .addLoot(LootEntry.of("create:builders_tea", [1, 2]).when((c) => c.randomChance(0.12)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.01)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 3).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.01)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [2, 3]).when((c) => c.randomChance(0.12)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_nugget", 8).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("create:experience_nugget", [4, 8]).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("create:experience_block").when((c) => c.randomChance(0.05)))
         .addLoot(LootEntry.of("xpbook:xp_tome").when((c) => c.randomChance(0.03)))
         // --- Утилити (средний тир) ---
@@ -493,7 +493,7 @@ LootJS.modifiers((event) => {
         .addLoot(LootEntry.of("sophisticatedbackpacks:stack_upgrade_tier_1").when((c) => c.randomChance(0.05)))
         .addLoot(LootEntry.of("ironchests:copper_chest").when((c) => c.randomChance(0.04)))
         .addLoot(LootEntry.of("ironchests:iron_chest").when((c) => c.randomChance(0.02)))
-        .addLoot(LootEntry.of("waystones:warp_scroll", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("waystones:warp_scroll", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("waystones:return_scroll").when((c) => c.randomChance(0.08)))
 
 
@@ -504,28 +504,28 @@ LootJS.modifiers((event) => {
         /.*chests.*mansion.*|.*mansion.*chests.*|.*chests.*pillager.*outpost.*|.*pillager.*outpost.*chests.*/
     )
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 12).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("musketmod:cartridge", 2).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [6, 12]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("musketmod:cartridge", [1, 2]).when((c) => c.randomChance(0.08)))
         // --- Еда ---
-        .addLoot(LootEntry.of("create_confectionery:bar_of_black_chocolate", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("farmersrespite:coffee_beans", 4).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("farmersrespite:coffee", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create_confectionery:bar_of_black_chocolate", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersrespite:coffee_beans", [2, 4]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("farmersrespite:coffee", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("largemeals:pasta_with_mushroom_sauce").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("largemeals:rice_pudding", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("largemeals:rice_pudding", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("vintagedelight:deluxe_burger").when((c) => c.randomChance(0.10)))
         // century_egg оставлено — особняки могут быть с восточным колоритом
         .addLoot(LootEntry.of("vintagedelight:century_egg").when((c) => c.randomChance(0.02)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:andesite_alloy", 8).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("create_new_age:copper_wire", 8).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_steel", 4).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [4, 8]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("create_new_age:copper_wire", [4, 8]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_steel", [2, 4]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.02)))
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 2).when((c) => c.randomChance(0.05)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [1, 2]).when((c) => c.randomChance(0.05)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.01)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 3).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.01)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [2, 3]).when((c) => c.randomChance(0.10)))
         // --- Утилити ---
         .addLoot(LootEntry.of("travelertoolbelt:iron_belt").when((c) => c.randomChance(0.05)))
         .addLoot(LootEntry.of("travelertoolbelt:gold_belt").when((c) => c.randomChance(0.03)))
@@ -541,31 +541,31 @@ LootJS.modifiers((event) => {
         /.*chests.*(mage|wizard|magic|arcane).*|.*(mage|wizard|magic|arcane).*chests.*|.*irons_spellbooks.*chests.*|.*chests.*irons_spellbooks.*|.*gtbcs.*chests.*|.*chests.*gtbcs.*/
     )
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("archeryexp:diamond_arrow", 3).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("archeryexp:diamond_arrow", [2, 3]).when((c) => c.randomChance(0.08)))
         // --- Еда ---
-        .addLoot(LootEntry.of("farmersrespite:green_tea", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("brewinandchewin:creamy_onion_soup", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("galospheric_delight:lumiere_pie_slice", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("galospheric_delight:amethyst_pie_slice", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("galospheric_delight:allurite_pie_slice", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("farmersrespite:green_tea", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("brewinandchewin:creamy_onion_soup", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("galospheric_delight:lumiere_pie_slice", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("galospheric_delight:amethyst_pie_slice", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("galospheric_delight:allurite_pie_slice", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("galospheric_delight:lumiere_cocktail").when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("galospheric_delight:amethyst_cocktail").when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("galospheric_delight:allurite_cocktail").when((c) => c.randomChance(0.08)))
-        .addLoot(LootEntry.of("galospheric_delight:azalea_petals", 3).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("galospheric_delight:azalea_petals", [2, 3]).when((c) => c.randomChance(0.12)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 3).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_electrum", 2).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [2, 3]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_electrum", [1, 2]).when((c) => c.randomChance(0.08)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.03)))
         .addLoot(LootEntry.of("create:electron_tube").when((c) => c.randomChance(0.03)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.02)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 3).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.02)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [2, 3]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("waystones:warp_scroll").when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("waystones:return_scroll").when((c) => c.randomChance(0.08)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_nugget", 6).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create:experience_nugget", [3, 6]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("create:experience_block").when((c) => c.randomChance(0.04)))
         .addLoot(LootEntry.of("xpbook:xp_tome").when((c) => c.randomChance(0.05)))
         // --- Утилити ---
@@ -586,16 +586,16 @@ LootJS.modifiers((event) => {
     // =========================================================================
     event.addLootTableModifier(/.*chests.*library.*|.*library.*chests.*/)
         // --- Еда (чай для чтения!) ---
-        .addLoot(LootEntry.of("farmersrespite:green_tea", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("farmersrespite:black_tea", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("farmersrespite:green_tea", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("farmersrespite:black_tea", [1, 2]).when((c) => c.randomChance(0.15)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 3).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [2, 3]).when((c) => c.randomChance(0.12)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 3).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [2, 3]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("waystones:warp_scroll").when((c) => c.randomChance(0.10)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_nugget", 6).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create:experience_nugget", [3, 6]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("xpbook:xp_tome").when((c) => c.randomChance(0.08)))
         // --- Apotheosis ---
         .addLoot(LootEntry.of("apotheosis:scrap_tome").when((c) => c.randomChance(0.05)))
@@ -615,16 +615,16 @@ LootJS.modifiers((event) => {
         .addLoot(LootEntry.of("vintagedelight:century_egg").when((c) => c.randomChance(0.03)))
         .addLoot(LootEntry.of("largemeals:roasted_mutton_rack_block").when((c) => c.randomChance(0.02)))
         // --- Крафт-материалы (ценные) ---
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 4).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [2, 4]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.04)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.30)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.02)))
-        .addLoot(LootEntry.of("numismatics:bevel", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("waystones:warp_scroll", 2).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("waystones:return_scroll", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.30)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.02)))
+        .addLoot(LootEntry.of("numismatics:bevel", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("waystones:warp_scroll", [1, 2]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("waystones:return_scroll", [1, 2]).when((c) => c.randomChance(0.15)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_block", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create:experience_block", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("xpbook:xp_tome").when((c) => c.randomChance(0.08)))
         // --- Утилити (топовый тир) ---
         .addLoot(LootEntry.of("travelertoolbelt:diamond_belt").when((c) => c.randomChance(0.04)))
@@ -646,26 +646,26 @@ LootJS.modifiers((event) => {
         //enchantments — medium tier (нефортресс: был 6%, подтянут до 7%)
         .addLoot(enchantedBook(0.07, "medium"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:netherite_arrow", 4).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("archeryexp:netherite_arrow", [2, 4]).when((c) => c.randomChance(0.08)))
         // --- Еда ---
-        .addLoot(LootEntry.of("nethersdelight:hoglin_loin", 3).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("nethersdelight:hoglin_sirloin", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("nethersdelight:nether_skewer", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("create:blaze_cake", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("nethersdelight:hoglin_loin", [2, 3]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("nethersdelight:hoglin_sirloin", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("nethersdelight:nether_skewer", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:blaze_cake", [1, 2]).when((c) => c.randomChance(0.12)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:brass_ingot", 6).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create:brass_ingot", [3, 6]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("create:electron_tube").when((c) => c.randomChance(0.04)))
         .addLoot(LootEntry.of("create:precision_mechanism").when((c) => c.randomChance(0.01)))
-        .addLoot(LootEntry.of("create_new_age:copper_wire", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_electrum", 2).when((c) => c.randomChance(0.06)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_steel", 4).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", 2).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_constantan", 4).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create_new_age:copper_wire", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_electrum", [1, 2]).when((c) => c.randomChance(0.06)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_steel", [2, 4]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", [1, 2]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_constantan", [2, 4]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.03)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:bevel", 3).when((c) => c.randomChance(0.08)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("waystones:warp_scroll", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:bevel", [2, 3]).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("waystones:warp_scroll", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Утилити ---
         .addLoot(LootEntry.of("travelertoolbelt:gold_belt").when((c) => c.randomChance(0.04)))
         // netherite_belt убран из нефортресс — слишком рано для эндгейм пояса
@@ -681,26 +681,26 @@ LootJS.modifiers((event) => {
         /.*incendium.*chests.*|.*chests.*incendium.*|.*bygonenether.*chests.*|.*chests.*bygonenether.*|.*infernalexp.*chests.*|.*chests.*infernalexp.*/
     )
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:netherite_arrow", 4).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("archeryexp:netherite_arrow", [2, 4]).when((c) => c.randomChance(0.08)))
         // --- Еда ---
-        .addLoot(LootEntry.of("nethersdelight:hoglin_loin", 3).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("nethersdelight:hoglin_sirloin", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("nethersdelight:hoglin_ear", 3).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("nethersdelight:hoglin_loin", [2, 3]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("nethersdelight:hoglin_sirloin", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("nethersdelight:hoglin_ear", [2, 3]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("nethersdelight:grilled_strider").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("nethersdelight:nether_skewer", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("create:blaze_cake", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("nethersdelight:nether_skewer", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:blaze_cake", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:brass_ingot", 6).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create:brass_ingot", [3, 6]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("create:electron_tube").when((c) => c.randomChance(0.04)))
         .addLoot(LootEntry.of("create:precision_mechanism").when((c) => c.randomChance(0.01)))
-        .addLoot(LootEntry.of("create_new_age:copper_wire", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_electrum", 2).when((c) => c.randomChance(0.06)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_steel", 4).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create_new_age:copper_wire", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_electrum", [1, 2]).when((c) => c.randomChance(0.06)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_steel", [2, 4]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.03)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:bevel", 2).when((c) => c.randomChance(0.08)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("waystones:warp_scroll", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:bevel", [1, 2]).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("waystones:warp_scroll", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Утилити ---
         .addLoot(LootEntry.of("travelertoolbelt:gold_belt").when((c) => c.randomChance(0.04)))
         .addLoot(LootEntry.of("sophisticatedbackpacks:iron_backpack").when((c) => c.randomChance(0.04)))
@@ -715,7 +715,7 @@ LootJS.modifiers((event) => {
     // =========================================================================
     event.addLootTypeModifier(LootType.CHEST)
         .anyDimension("minecraft:the_nether")
-        .addLoot(LootEntry.of("nethersdelight:strider_slice", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("nethersdelight:strider_slice", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("create:blaze_cake").when((c) => c.randomChance(0.08)))
 
 
@@ -728,30 +728,30 @@ LootJS.modifiers((event) => {
         //enchantments — epic tier
         .addLoot(enchantedBook(0.15, "epic"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:diamond_arrow", 4).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("archeryexp:diamond_arrow", [2, 4]).when((c) => c.randomChance(0.20)))
         // --- Еда ---
-        .addLoot(LootEntry.of("ends_delight:ender_noogle", 2).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("ends_delight:ender_noogle", [1, 2]).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("ends_delight:end_mixed_salad").when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("ends_delight:grilled_shulker").when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("ends_delight:shulker_meat", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("ends_delight:shulker_meat", [1, 2]).when((c) => c.randomChance(0.15)))
         // --- Крафт-материалы (AE2 — главный источник) ---
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 8).when((c) => c.randomChance(0.60)))
-        .addLoot(LootEntry.of("ae2:charged_certus_quartz_crystal", 4).when((c) => c.randomChance(0.40)))
-        .addLoot(LootEntry.of("ae2:fluix_crystal", 4).when((c) => c.randomChance(0.35)))
-        .addLoot(LootEntry.of("ae2:sky_dust", 6).when((c) => c.randomChance(0.40)))
-        .addLoot(LootEntry.of("ae2:ender_dust", 6).when((c) => c.randomChance(0.40)))
-        .addLoot(LootEntry.of("create:brass_ingot", 4).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [4, 8]).when((c) => c.randomChance(0.60)))
+        .addLoot(LootEntry.of("ae2:charged_certus_quartz_crystal", [2, 4]).when((c) => c.randomChance(0.40)))
+        .addLoot(LootEntry.of("ae2:fluix_crystal", [2, 4]).when((c) => c.randomChance(0.35)))
+        .addLoot(LootEntry.of("ae2:sky_dust", [3, 6]).when((c) => c.randomChance(0.40)))
+        .addLoot(LootEntry.of("ae2:ender_dust", [3, 6]).when((c) => c.randomChance(0.40)))
+        .addLoot(LootEntry.of("create:brass_ingot", [2, 4]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.04)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.12)))
         // waystone в End City: снижен до 15% (был 30% — слишком щедро для структурного объекта)
         .addLoot(LootEntry.of("waystones:waystone").when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 6).when((c) => c.randomChance(0.50)))
-        .addLoot(LootEntry.of("waystones:warp_scroll", 3).when((c) => c.randomChance(0.40)))
-        .addLoot(LootEntry.of("waystones:return_scroll", 3).when((c) => c.randomChance(0.40)))
-        .addLoot(LootEntry.of("waystones:bound_scroll", 2).when((c) => c.randomChance(0.30)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [3, 6]).when((c) => c.randomChance(0.50)))
+        .addLoot(LootEntry.of("waystones:warp_scroll", [2, 3]).when((c) => c.randomChance(0.40)))
+        .addLoot(LootEntry.of("waystones:return_scroll", [2, 3]).when((c) => c.randomChance(0.40)))
+        .addLoot(LootEntry.of("waystones:bound_scroll", [1, 2]).when((c) => c.randomChance(0.30)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_block", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create:experience_block", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("xpbook:xp_tome").when((c) => c.randomChance(0.06)))
         // --- Утилити (топовый тир) ---
         .addLoot(LootEntry.of("travelertoolbelt:diamond_belt").when((c) => c.randomChance(0.04)))
@@ -777,19 +777,19 @@ LootJS.modifiers((event) => {
         //enchantments — epic tier
         .addLoot(enchantedBook(0.14, "epic"))
         // --- Еда ---
-        .addLoot(LootEntry.of("miners_delight:cave_soup", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("miners_delight:cave_soup", [1, 2]).when((c) => c.randomChance(0.15)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 4).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("ae2:charged_certus_quartz_crystal", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [2, 4]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("ae2:charged_certus_quartz_crystal", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("create:electron_tube").when((c) => c.randomChance(0.04)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.04)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.01)))
-        .addLoot(LootEntry.of("waystones:warp_scroll", 2).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.01)))
+        .addLoot(LootEntry.of("waystones:warp_scroll", [1, 2]).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("waystones:return_scroll").when((c) => c.randomChance(0.15)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_block", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:experience_block", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("xpbook:xp_tome").when((c) => c.randomChance(0.06)))
         // --- Утилити ---
         .addLoot(LootEntry.of("travelertoolbelt:diamond_belt").when((c) => c.randomChance(0.03)))
@@ -809,19 +809,19 @@ LootJS.modifiers((event) => {
         //enchantments — easy tier (IDAS: был 2%, подтянут до 5%)
         .addLoot(enchantedBook(0.05, "easy"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 12).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [6, 12]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 6]).when((c) => c.randomChance(0.15)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("waystones:warp_scroll", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("waystones:warp_scroll", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("waystones:return_scroll").when((c) => c.randomChance(0.08)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_nugget", 6).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create:experience_nugget", [3, 6]).when((c) => c.randomChance(0.15)))
         // --- Утилити ---
         .addLoot(LootEntry.of("travelertoolbelt:copper_belt").when((c) => c.randomChance(0.05)))
         .addLoot(LootEntry.of("travelertoolbelt:belt").when((c) => c.randomChance(0.03)))
         .addLoot(LootEntry.of("sophisticatedbackpacks:copper_backpack").when((c) => c.randomChance(0.05)))
-        .addLoot(LootEntry.of("sophisticatedbackpacks:upgrade_base", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("sophisticatedbackpacks:upgrade_base", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("sophisticatedbackpacks:stack_upgrade_starter_tier").when((c) => c.randomChance(0.08)))
 
 
@@ -833,18 +833,18 @@ LootJS.modifiers((event) => {
         //enchantments — medium tier
         .addLoot(enchantedBook(0.08, "medium"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 12).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [6, 12]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 6]).when((c) => c.randomChance(0.12)))
         // --- Еда ---
-        .addLoot(LootEntry.of("miners_delight:smoked_bat_wing", 3).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("miners_delight:smoked_bat_wing", [2, 3]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("miners_delight:bat_soup").when((c) => c.randomChance(0.10)))
         // --- Крафт-материалы ---
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.02)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_nugget", 5).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create:experience_nugget", [3, 5]).when((c) => c.randomChance(0.15)))
         // --- Утилити ---
         .addLoot(LootEntry.of("comforts:sleeping_bag_black").when((c) => c.randomChance(0.08)))
         .addLoot(LootEntry.of("travelertoolbelt:belt").when((c) => c.randomChance(0.06)))
@@ -861,14 +861,14 @@ LootJS.modifiers((event) => {
         //enchantments — hard tier
         .addLoot(enchantedBook(0.10, "hard"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:diamond_arrow", 4).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("archeryexp:diamond_arrow", [2, 4]).when((c) => c.randomChance(0.12)))
         // --- Крафт-материалы ---
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.04)))
         // precision_mechanism убран из BiC lvl3 — по прогрессии слишком рано
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 3).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.03)))
-        .addLoot(LootEntry.of("waystones:warp_scroll", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("numismatics:spur", [2, 3]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.03)))
+        .addLoot(LootEntry.of("waystones:warp_scroll", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("waystones:return_scroll").when((c) => c.randomChance(0.08)))
         // --- XP ---
         .addLoot(LootEntry.of("create:experience_block").when((c) => c.randomChance(0.06)))
@@ -894,19 +894,19 @@ LootJS.modifiers((event) => {
         //enchantments — easy tier
         .addLoot(enchantedBook(0.05, "easy"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 10).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 5).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [5, 10]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 5]).when((c) => c.randomChance(0.12)))
         // --- Еда ---
-        .addLoot(LootEntry.of("farmersdelight:fried_egg", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("farmersdelight:rich_soil", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("create:builders_tea", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersdelight:fried_egg", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("farmersdelight:rich_soil", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:builders_tea", [1, 2]).when((c) => c.randomChance(0.12)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:andesite_alloy", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", 8).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("rubberworks:rubber", 4).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", [4, 8]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("rubberworks:rubber", [2, 4]).when((c) => c.randomChance(0.10)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Утилити ---
         .addLoot(LootEntry.of("sophisticatedbackpacks:upgrade_base").when((c) => c.randomChance(0.08)))
         .addLoot(LootEntry.of("functionalstorage:copper_upgrade").when((c) => c.randomChance(0.06)))
@@ -919,18 +919,18 @@ LootJS.modifiers((event) => {
         //enchantments — epic tier
         .addLoot(enchantedBook(0.15, "epic"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:diamond_arrow", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("archeryexp:netherite_arrow", 2).when((c) => c.randomChance(0.06)))
+        .addLoot(LootEntry.of("archeryexp:diamond_arrow", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("archeryexp:netherite_arrow", [1, 2]).when((c) => c.randomChance(0.06)))
         // --- Крафт-материалы ---
         .addLoot(LootEntry.of("create:precision_mechanism").when((c) => c.randomChance(0.015)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.05)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 4).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 3).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("waystones:warp_scroll", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("waystones:return_scroll", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("numismatics:spur", [2, 4]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [2, 3]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("waystones:warp_scroll", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("waystones:return_scroll", [1, 2]).when((c) => c.randomChance(0.12)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_block", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create:experience_block", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("xpbook:xp_tome").when((c) => c.randomChance(0.06)))
         // --- Утилити (топовый тир) ---
         .addLoot(LootEntry.of("travelertoolbelt:diamond_belt").when((c) => c.randomChance(0.03)))
@@ -951,19 +951,19 @@ LootJS.modifiers((event) => {
         //enchantments — hard tier (deeper darker: был 11%, подтянут до 12%)
         .addLoot(enchantedBook(0.12, "hard"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:diamond_arrow", 4).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("archeryexp:diamond_arrow", [2, 4]).when((c) => c.randomChance(0.12)))
         // --- Еда ---
-        .addLoot(LootEntry.of("miners_delight:cave_soup", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("galospheric_delight:cave_barbecue_stick", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("galospheric_delight:salted_fish", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("miners_delight:cave_soup", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("galospheric_delight:cave_barbecue_stick", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("galospheric_delight:salted_fish", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 4).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [2, 4]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.04)))
         .addLoot(LootEntry.of("create:precision_mechanism").when((c) => c.randomChance(0.008)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 3).when((c) => c.randomChance(0.08)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 3).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [2, 3]).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [2, 3]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("waystones:warp_scroll").when((c) => c.randomChance(0.08)))
         // --- XP ---
         .addLoot(LootEntry.of("create:experience_block").when((c) => c.randomChance(0.08)))
@@ -985,26 +985,26 @@ LootJS.modifiers((event) => {
         //enchantments — medium tier
         .addLoot(enchantedBook(0.08, "medium"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 10).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("archeryexp:diamond_arrow", 3).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [5, 10]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("archeryexp:diamond_arrow", [2, 3]).when((c) => c.randomChance(0.08)))
         // --- Еда Twilight специфика ---
-        .addLoot(LootEntry.of("twilightdelight:cooked_meef_slice", 4).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("twilightdelight:torchberry_cookie", 4).when((c) => c.randomChance(0.18)))
-        .addLoot(LootEntry.of("twilightdelight:cooked_venison_rib", 3).when((c) => c.randomChance(0.18)))
-        .addLoot(LootEntry.of("twilightdelight:meef_wrap", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("twilightdelight:cooked_meef_slice", [2, 4]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("twilightdelight:torchberry_cookie", [2, 4]).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("twilightdelight:cooked_venison_rib", [2, 3]).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("twilightdelight:meef_wrap", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("twilightdelight:ghast_burger").when((c) => c.randomChance(0.08)))
         // Galospheric — волшебный лес
-        .addLoot(LootEntry.of("galospheric_delight:lumiere_pie_slice", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("galospheric_delight:amethyst_pie_slice", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("galospheric_delight:lumiere_pie_slice", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("galospheric_delight:amethyst_pie_slice", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("galospheric_delight:lumiere_cocktail").when((c) => c.randomChance(0.08)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.01)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 3).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.01)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [2, 3]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("waystones:warp_scroll").when((c) => c.randomChance(0.08)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_nugget", 6).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create:experience_nugget", [3, 6]).when((c) => c.randomChance(0.15)))
         // --- Утилити ---
         .addLoot(LootEntry.of("travelertoolbelt:iron_belt").when((c) => c.randomChance(0.05)))
         .addLoot(LootEntry.of("sophisticatedbackpacks:copper_backpack").when((c) => c.randomChance(0.05)))
@@ -1020,7 +1020,7 @@ LootJS.modifiers((event) => {
         //enchantments — easy tier (океан/корабли: был 4%, подтянут до 5%)
         .addLoot(enchantedBook(0.05, "easy"))
         // --- Оружие / боеприпасы морские ---
-        .addLoot(LootEntry.of("smallships:cannon_ball", 4).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("smallships:cannon_ball", [2, 4]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("smallships:cannon").when((c) => c.randomChance(0.04)))
         .addLoot(LootEntry.of("functionality:harpoon").when((c) => c.randomChance(0.05)))
         .addLoot(LootEntry.of("functionality:bident").when((c) => c.randomChance(0.04)))
@@ -1028,40 +1028,40 @@ LootJS.modifiers((event) => {
         // --- Рыбалка ---
         .addLoot(LootEntry.of("aquaculture:tackle_box").when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("aquaculture:iron_fishing_rod").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("aquaculture:iron_hook", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("aquaculture:iron_hook", [1, 2]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("aquaculture:gold_hook").when((c) => c.randomChance(0.08)))
         .addLoot(LootEntry.of("aquaculture:diamond_hook").when((c) => c.randomChance(0.03)))
-        .addLoot(LootEntry.of("aquaculture:neptunium_ingot", 2).when((c) => c.randomChance(0.05)))
-        .addLoot(LootEntry.of("aquaculture:fishing_line", 3).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("aquaculture:bobber", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("aquaculture:worm", 4).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("aquaculture:neptunium_ingot", [1, 2]).when((c) => c.randomChance(0.05)))
+        .addLoot(LootEntry.of("aquaculture:fishing_line", [2, 3]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("aquaculture:bobber", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("aquaculture:worm", [2, 4]).when((c) => c.randomChance(0.15)))
         // --- Еда (морская тематика) ---
-        .addLoot(LootEntry.of("aquaculturedelight:unusual_fish_soup", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("aquaculturedelight:bass_stew", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("aquaculturedelight:fish_and_chips", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("aquaculturedelight:unusual_fish_soup", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("aquaculturedelight:bass_stew", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("aquaculturedelight:fish_and_chips", [1, 2]).when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("aquaculturedelight:tuna_spaghetti").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("aquaculturedelight:trout_steak", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("aquaculturedelight:raw_fish_fillet_roll", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("aquaculturedelight:trout_steak", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("aquaculturedelight:raw_fish_fillet_roll", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("oceansdelight:guardian_soup").when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("oceansdelight:seagrass_salad", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("oceansdelight:squid_rings", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("oceansdelight:honey_fried_kelp", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("oceansdelight:seagrass_salad", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("oceansdelight:squid_rings", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("oceansdelight:honey_fried_kelp", [1, 2]).when((c) => c.randomChance(0.10)))
         // Алкоголь на корабле — обязательно!
-        .addLoot(LootEntry.of("brewinandchewin:red_rum", 2).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("brewinandchewin:red_rum", [1, 2]).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("brewinandchewin:vodka").when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("brewinandchewin:beer", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("brewinandchewin:beer", [1, 2]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("brewinandchewin:tankard").when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("vintagedelight:salted_cod", 3).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("vintagedelight:salted_salmon", 3).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("vintagedelight:salted_cod", [2, 3]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("vintagedelight:salted_salmon", [2, 3]).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("vintagedelight:vinegar_bottle").when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("farmersrespite:black_tea", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("farmersrespite:black_tea", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Крафт-материалы ---
         .addLoot(LootEntry.of("rubberworks:resin_bucket").when((c) => c.randomChance(0.08)))
-        .addLoot(LootEntry.of("rubberworks:rubber", 3).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", 3).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("rubberworks:rubber", [2, 3]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", [2, 3]).when((c) => c.randomChance(0.12)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.08)))
 
 
     // =========================================================================
@@ -1071,14 +1071,14 @@ LootJS.modifiers((event) => {
         /.*mowziesmobs.*chests.*|.*chests.*mowziesmobs.*|.*illagerinvasion.*chests.*|.*chests.*illagerinvasion.*/
     )
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("archeryexp:diamond_arrow", 3).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("archeryexp:diamond_arrow", [2, 3]).when((c) => c.randomChance(0.08)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.01)))
-        .addLoot(LootEntry.of("waystones:warp_scroll", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.01)))
+        .addLoot(LootEntry.of("waystones:warp_scroll", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_nugget", 6).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create:experience_nugget", [3, 6]).when((c) => c.randomChance(0.15)))
         // --- Утилити ---
         .addLoot(LootEntry.of("sophisticatedbackpacks:iron_backpack").when((c) => c.randomChance(0.04)))
         .addLoot(LootEntry.of("travelertoolbelt:gold_belt").when((c) => c.randomChance(0.04)))
@@ -1095,18 +1095,18 @@ LootJS.modifiers((event) => {
         //enchantments — medium tier
         .addLoot(enchantedBook(0.08, "medium"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 8).when((c) => c.randomChance(0.18)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 4).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [4, 8]).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [2, 4]).when((c) => c.randomChance(0.12)))
         // --- Еда ---
-        .addLoot(LootEntry.of("farmersdelight:rich_soil", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("create:builders_tea", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersdelight:rich_soil", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:builders_tea", [1, 2]).when((c) => c.randomChance(0.12)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:andesite_alloy", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", 8).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("rubberworks:rubber", 4).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", [4, 8]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("rubberworks:rubber", [2, 4]).when((c) => c.randomChance(0.10)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Утилити ---
         .addLoot(LootEntry.of("sophisticatedbackpacks:upgrade_base").when((c) => c.randomChance(0.08)))
         .addLoot(LootEntry.of("functionalstorage:copper_upgrade").when((c) => c.randomChance(0.06)))
@@ -1119,27 +1119,27 @@ LootJS.modifiers((event) => {
     event.addLootTableModifier(/.*mineshaft.*chests.*|.*chests.*mineshaft.*/)
         .addLoot(LootEntry.of("supplementaries:rope").when((c) => c.randomChance(0.1)))
         // --- Еда шахтёрская ---
-        .addLoot(LootEntry.of("miners_delight:cave_soup", 2).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("miners_delight:cave_soup", [1, 2]).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("miners_delight:insect_stew").when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("miners_delight:smoked_bat_wing", 4).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("galospheric_delight:cave_barbecue_stick", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("galospheric_delight:salted_fish", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("miners_delight:smoked_bat_wing", [2, 4]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("galospheric_delight:cave_barbecue_stick", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("galospheric_delight:salted_fish", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:andesite_alloy", 8).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("create:cogwheel", 3).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_nickel", 4).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", 3).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", 10).when((c) => c.randomChance(0.18)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [4, 8]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("create:cogwheel", [2, 3]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_nickel", [2, 4]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", [2, 3]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", [5, 10]).when((c) => c.randomChance(0.18)))
         .addLoot(LootEntry.of("immersiveengineering:creosote_bucket").when((c) => c.randomChance(0.12)))
         .addLoot(LootEntry.of("immersiveengineering:redstone_mechanism").when((c) => c.randomChance(0.015)))
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 2).when((c) => c.randomChance(0.05)))
-        .addLoot(LootEntry.of("rubberworks:rubber", 5).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("rubberworks:rubber_sheet", 2).when((c) => c.randomChance(0.07)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [1, 2]).when((c) => c.randomChance(0.05)))
+        .addLoot(LootEntry.of("rubberworks:rubber", [3, 5]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("rubberworks:rubber_sheet", [1, 2]).when((c) => c.randomChance(0.07)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.08)))
         // --- XP ---
-        .addLoot(LootEntry.of("create:experience_nugget", 5).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("create:experience_nugget", [3, 5]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("create:experience_block").when((c) => c.randomChance(0.03)))
         // --- Утилити ---
         .addLoot(LootEntry.of("comforts:sleeping_bag_black").when((c) => c.randomChance(0.08)))
@@ -1157,21 +1157,21 @@ LootJS.modifiers((event) => {
         //enchantments — medium tier
         .addLoot(enchantedBook(0.08, "medium"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 8).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("archeryexp:diamond_arrow", 3).when((c) => c.randomChance(0.08)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [4, 8]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("archeryexp:diamond_arrow", [2, 3]).when((c) => c.randomChance(0.08)))
         // --- Еда ---
-        .addLoot(LootEntry.of("farmersdelight:beef_stew", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("farmersdelight:beef_stew", [1, 2]).when((c) => c.randomChance(0.10)))
         // century_egg — восточный деликатес, в пирамидах/храмах уместен
         .addLoot(LootEntry.of("vintagedelight:century_egg").when((c) => c.randomChance(0.03)))
-        .addLoot(LootEntry.of("create_confectionery:bar_of_black_chocolate", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("create_confectionery:bar_of_black_chocolate", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:andesite_alloy", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_electrum", 2).when((c) => c.randomChance(0.06)))
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 2).when((c) => c.randomChance(0.05)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_electrum", [1, 2]).when((c) => c.randomChance(0.06)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [1, 2]).when((c) => c.randomChance(0.05)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.01)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.01)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Утилити ---
         .addLoot(LootEntry.of("travelertoolbelt:gold_belt").when((c) => c.randomChance(0.04)))
 
@@ -1183,18 +1183,18 @@ LootJS.modifiers((event) => {
         //enchantments — easy tier
         .addLoot(enchantedBook(0.05, "easy"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 10).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 5).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [5, 10]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 5]).when((c) => c.randomChance(0.12)))
         // --- Еда ---
-        .addLoot(LootEntry.of("farmersrespite:tea_seeds", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("create:builders_tea", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersrespite:tea_seeds", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:builders_tea", [1, 2]).when((c) => c.randomChance(0.12)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:andesite_alloy", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", 8).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 2).when((c) => c.randomChance(0.06)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", [4, 8]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [1, 2]).when((c) => c.randomChance(0.06)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Утилити ---
         .addLoot(LootEntry.of("comforts:sleeping_bag_black").when((c) => c.randomChance(0.08)))
         .addLoot(LootEntry.of("travelertoolbelt:copper_belt").when((c) => c.randomChance(0.05)))
@@ -1211,22 +1211,22 @@ LootJS.modifiers((event) => {
         //enchantments — easy tier
         .addLoot(enchantedBook(0.05, "easy"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 10).when((c) => c.randomChance(0.20)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 5).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("archeryexp:diamond_arrow", 3).when((c) => c.randomChance(0.06)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [5, 10]).when((c) => c.randomChance(0.20)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 5]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("archeryexp:diamond_arrow", [2, 3]).when((c) => c.randomChance(0.06)))
         // --- Еда ---
-        .addLoot(LootEntry.of("farmersdelight:beef_stew", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("brewinandchewin:beer", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("create:builders_tea", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("farmersdelight:beef_stew", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("brewinandchewin:beer", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:builders_tea", [1, 2]).when((c) => c.randomChance(0.12)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:andesite_alloy", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", 3).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", 8).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", 2).when((c) => c.randomChance(0.05)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_lead", [2, 3]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", [4, 8]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("ae2:certus_quartz_crystal", [1, 2]).when((c) => c.randomChance(0.05)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.005)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.005)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.10)))
         .addLoot(LootEntry.of("waystones:warp_scroll").when((c) => c.randomChance(0.06)))
         // --- Утилити ---
         .addLoot(LootEntry.of("comforts:sleeping_bag_black").when((c) => c.randomChance(0.08)))
@@ -1244,21 +1244,21 @@ LootJS.modifiers((event) => {
         //enchantments — easy tier
         .addLoot(enchantedBook(0.05, "easy"))
         // --- Боеприпасы ---
-        .addLoot(LootEntry.of("archeryexp:iron_arrow", 12).when((c) => c.randomChance(0.2)))
-        .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("musketmod:cartridge", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("archeryexp:iron_arrow", [6, 12]).when((c) => c.randomChance(0.2)))
+        .addLoot(LootEntry.of("archeryexp:gold_arrow", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("musketmod:cartridge", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Еда ---
-        .addLoot(LootEntry.of("farmersdelight:roast_chicken", 2).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("farmersdelight:roast_chicken", [1, 2]).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("brewinandchewin:ham_and_cheese_sandwich").when((c) => c.randomChance(0.12)))
-        .addLoot(LootEntry.of("brewinandchewin:beer", 2).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("brewinandchewin:beer", [1, 2]).when((c) => c.randomChance(0.12)))
         // --- Крафт-материалы ---
-        .addLoot(LootEntry.of("create:andesite_alloy", 6).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("immersiveengineering:ingot_steel", 3).when((c) => c.randomChance(0.10)))
-        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", 8).when((c) => c.randomChance(0.12)))
+        .addLoot(LootEntry.of("create:andesite_alloy", [3, 6]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("immersiveengineering:ingot_steel", [2, 3]).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("immersiveengineering:hemp_fiber", [4, 8]).when((c) => c.randomChance(0.12)))
         // --- Валюта ---
-        .addLoot(LootEntry.of("numismatics:spur", 2).when((c) => c.randomChance(0.15)))
-        .addLoot(LootEntry.of("numismatics:sprocket", 2).when((c) => c.randomChance(0.005)))
-        .addLoot(LootEntry.of("waystones:warp_dust", 2).when((c) => c.randomChance(0.10)))
+        .addLoot(LootEntry.of("numismatics:spur", [1, 2]).when((c) => c.randomChance(0.15)))
+        .addLoot(LootEntry.of("numismatics:sprocket", [1, 2]).when((c) => c.randomChance(0.005)))
+        .addLoot(LootEntry.of("waystones:warp_dust", [1, 2]).when((c) => c.randomChance(0.10)))
         // --- Утилити ---
         .addLoot(LootEntry.of("travelertoolbelt:iron_belt").when((c) => c.randomChance(0.04)))
         .addLoot(LootEntry.of("sophisticatedbackpacks:copper_backpack").when((c) => c.randomChance(0.04)))
