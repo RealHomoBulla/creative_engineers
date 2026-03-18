@@ -48,7 +48,7 @@ LootJS.modifiers((event) => {
             .addLoot(LootEntry.of("waystones:warp_scroll", 2).when((c) => c.randomChance(0.10)))
             .addLoot(LootEntry.of("waystones:return_scroll").when((c) => c.randomChance(0.08)))
             //enchantments — medium tier
-            .addLoot(enchantedBook(0.08))
+            .addLoot(enchantedBook(0.08, "medium"))
     }
 
     // XP-лут — опыт разного тира
@@ -105,13 +105,23 @@ LootJS.modifiers((event) => {
 
 
     // Зачарованная книга с рандомным зачарованием
+    // Используем minecraft:book + enchantWithLevels — ванильный способ создания
+    // зачарованных книг в лут-таблицах. Функция сама конвертирует book → enchanted_book
+    // и записывает зачарования в StoredEnchantments.
     // Уровень зачарования зависит от сложности структуры:
-    //   easy   (5%)  — деревни, руины, лагеря, шахты, IDAS, terralith, yung's, pillager
-    //   medium (8%)  — башни, незер-крепость, BiC 1-2, храмы, twilight, integrated
-    //   hard   (10-12%) — стронгхолды, библиотеки, сокровищницы, BiC 3, deeper darker
-    //   epic   (14-15%) — end city, ancient city, cataclysm
-    const enchantedBook = (chance) => {
-        return LootEntry.of("minecraft:enchanted_book").enchantRandomly().when((c) => c.randomChance(chance))
+    //   easy   (5%, lvl 1-10)   — деревни, руины, лагеря, шахты, IDAS, terralith, yung's, pillager
+    //   medium (7-8%, lvl 10-20) — башни, незер-крепость, BiC 1-2, храмы, twilight, integrated
+    //   hard   (10-12%, lvl 15-25) — стронгхолды, библиотеки, сокровищницы, BiC 3, deeper darker
+    //   epic   (14-15%, lvl 20-30) — end city, ancient city, cataclysm
+    const ENCHANT_TIERS = {
+        easy:   [1, 10],
+        medium: [10, 20],
+        hard:   [15, 25],
+        epic:   [20, 30]
+    }
+    const enchantedBook = (chance, tier) => {
+        const [min, max] = ENCHANT_TIERS[tier] || ENCHANT_TIERS.medium
+        return LootEntry.of("minecraft:book").enchantWithLevels([min, max], true).when((c) => c.randomChance(chance))
     }
 
 
@@ -569,7 +579,7 @@ LootJS.modifiers((event) => {
         // Монета apotheotic — повышен шанс (был 0.008, маловато)
         .addLoot(LootEntry.of("apotheotic_additions:apotheotic_coin").when((c) => c.randomChance(0.015)))
         //enchantments — hard tier
-        .addLoot(enchantedBook(0.12))
+        .addLoot(enchantedBook(0.12, "hard"))
 
     // =========================================================================
     //  БИБЛИОТЕКИ
@@ -591,7 +601,7 @@ LootJS.modifiers((event) => {
         .addLoot(LootEntry.of("apotheosis:scrap_tome").when((c) => c.randomChance(0.05)))
         .addLoot(LootEntry.of("apotheosis:improved_scrap_tome").when((c) => c.randomChance(0.02)))
         //enchantments — hard tier
-        .addLoot(enchantedBook(0.12))
+        .addLoot(enchantedBook(0.12, "hard"))
 
 
     // =========================================================================
@@ -599,7 +609,7 @@ LootJS.modifiers((event) => {
     // =========================================================================
     event.addLootTableModifier(/.*chests.*treasure.*|.*treasure.*chests.*/)
         //enchantments — hard tier
-        .addLoot(enchantedBook(0.10))
+        .addLoot(enchantedBook(0.10, "hard"))
         // --- Еда (роскошная) ---
         // century_egg — экзотический деликатес, подходит для сокровищницы
         .addLoot(LootEntry.of("vintagedelight:century_egg").when((c) => c.randomChance(0.03)))
@@ -634,7 +644,7 @@ LootJS.modifiers((event) => {
         /.*chests.*(nether_bridge|nether.*fortress).*|.*(nether_bridge|nether.*fortress).*chests.*|minecraft:chests\/nether_bridge/
     )
         //enchantments — medium tier (нефортресс: был 6%, подтянут до 7%)
-        .addLoot(enchantedBook(0.07))
+        .addLoot(enchantedBook(0.07, "medium"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:netherite_arrow", 4).when((c) => c.randomChance(0.08)))
         // --- Еда ---
@@ -716,7 +726,7 @@ LootJS.modifiers((event) => {
         /.*end_city.*chests.*|.*chests.*end_city.*|.*end.*city.*chests.*|.*chests.*end.*city.*/
     )
         //enchantments — epic tier
-        .addLoot(enchantedBook(0.15))
+        .addLoot(enchantedBook(0.15, "epic"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:diamond_arrow", 4).when((c) => c.randomChance(0.20)))
         // --- Еда ---
@@ -765,7 +775,7 @@ LootJS.modifiers((event) => {
         /.*ancient.*chests.*|.*chests.*ancient.*|.*quark.*city.*|.*deep.*dark.*city.*/
     )
         //enchantments — epic tier
-        .addLoot(enchantedBook(0.14))
+        .addLoot(enchantedBook(0.14, "epic"))
         // --- Еда ---
         .addLoot(LootEntry.of("miners_delight:cave_soup", 2).when((c) => c.randomChance(0.15)))
         // --- Крафт-материалы ---
@@ -797,7 +807,7 @@ LootJS.modifiers((event) => {
     event.addLootTableModifier(/.*idas.*chests.*|.*chests.*idas.*/)
         .addLoot(LootEntry.of("supplementaries:rope").when((c) => c.randomChance(0.1)))
         //enchantments — easy tier (IDAS: был 2%, подтянут до 5%)
-        .addLoot(enchantedBook(0.05))
+        .addLoot(enchantedBook(0.05, "easy"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:iron_arrow", 12).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.15)))
@@ -821,7 +831,7 @@ LootJS.modifiers((event) => {
     // =========================================================================
     event.addLootTableModifier(/.*chest_level_[12].*/)
         //enchantments — medium tier
-        .addLoot(enchantedBook(0.08))
+        .addLoot(enchantedBook(0.08, "medium"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:iron_arrow", 12).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.12)))
@@ -849,7 +859,7 @@ LootJS.modifiers((event) => {
     // =========================================================================
     event.addLootTableModifier(/.*chest_level_3.*/)
         //enchantments — hard tier
-        .addLoot(enchantedBook(0.10))
+        .addLoot(enchantedBook(0.10, "hard"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:diamond_arrow", 4).when((c) => c.randomChance(0.12)))
         // --- Крафт-материалы ---
@@ -882,7 +892,7 @@ LootJS.modifiers((event) => {
         /.*repurposed_structures.*chests.*|.*chests.*repurposed_structures.*/
     )
         //enchantments — easy tier
-        .addLoot(enchantedBook(0.05))
+        .addLoot(enchantedBook(0.05, "easy"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:iron_arrow", 10).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("archeryexp:gold_arrow", 5).when((c) => c.randomChance(0.12)))
@@ -907,7 +917,7 @@ LootJS.modifiers((event) => {
     // =========================================================================
     event.addLootTableModifier(/.*cataclysm.*chests.*|.*chests.*cataclysm.*/)
         //enchantments — epic tier
-        .addLoot(enchantedBook(0.15))
+        .addLoot(enchantedBook(0.15, "epic"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:diamond_arrow", 6).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("archeryexp:netherite_arrow", 2).when((c) => c.randomChance(0.06)))
@@ -939,7 +949,7 @@ LootJS.modifiers((event) => {
     // =========================================================================
     event.addLootTableModifier(/.*deeperdarker.*chests.*|.*chests.*deeperdarker.*/)
         //enchantments — hard tier (deeper darker: был 11%, подтянут до 12%)
-        .addLoot(enchantedBook(0.12))
+        .addLoot(enchantedBook(0.12, "hard"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:diamond_arrow", 4).when((c) => c.randomChance(0.12)))
         // --- Еда ---
@@ -973,7 +983,7 @@ LootJS.modifiers((event) => {
     // =========================================================================
     event.addLootTableModifier(/.*twilightforest.*chests.*|.*chests.*twilightforest.*/)
         //enchantments — medium tier
-        .addLoot(enchantedBook(0.08))
+        .addLoot(enchantedBook(0.08, "medium"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:iron_arrow", 10).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.15)))
@@ -1008,7 +1018,7 @@ LootJS.modifiers((event) => {
     )
         .addLoot(LootEntry.of("supplementaries:rope").when((c) => c.randomChance(0.1)))
         //enchantments — easy tier (океан/корабли: был 4%, подтянут до 5%)
-        .addLoot(enchantedBook(0.05))
+        .addLoot(enchantedBook(0.05, "easy"))
         // --- Оружие / боеприпасы морские ---
         .addLoot(LootEntry.of("smallships:cannon_ball", 4).when((c) => c.randomChance(0.15)))
         .addLoot(LootEntry.of("smallships:cannon").when((c) => c.randomChance(0.04)))
@@ -1083,7 +1093,7 @@ LootJS.modifiers((event) => {
         /.*\bintegrated_dungeons\b.*chests.*|.*chests.*\bintegrated_dungeons\b.*|.*\bintegrated_structures\b.*chests.*|.*chests.*\bintegrated_structures\b.*/
     )
         //enchantments — medium tier
-        .addLoot(enchantedBook(0.08))
+        .addLoot(enchantedBook(0.08, "medium"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:iron_arrow", 8).when((c) => c.randomChance(0.18)))
         .addLoot(LootEntry.of("archeryexp:gold_arrow", 4).when((c) => c.randomChance(0.12)))
@@ -1136,7 +1146,7 @@ LootJS.modifiers((event) => {
         .addLoot(LootEntry.of("travelertoolbelt:copper_belt").when((c) => c.randomChance(0.05)))
         .addLoot(LootEntry.of("travelertoolbelt:iron_belt").when((c) => c.randomChance(0.03)))
         //enchantments — easy tier (шахты: был 3%, подтянут до 5%)
-        .addLoot(enchantedBook(0.05))
+        .addLoot(enchantedBook(0.05, "easy"))
 
     // =========================================================================
     //  ХРАМЫ / ПИРАМИДЫ
@@ -1145,7 +1155,7 @@ LootJS.modifiers((event) => {
         /.*chests.*(temple|pyramid).*|.*(temple|pyramid).*chests.*/
     )
         //enchantments — medium tier
-        .addLoot(enchantedBook(0.08))
+        .addLoot(enchantedBook(0.08, "medium"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:gold_arrow", 8).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("archeryexp:diamond_arrow", 3).when((c) => c.randomChance(0.08)))
@@ -1171,7 +1181,7 @@ LootJS.modifiers((event) => {
     // =========================================================================
     event.addLootTableModifier(/.*terralith.*chests.*|.*chests.*terralith.*/)
         //enchantments — easy tier
-        .addLoot(enchantedBook(0.05))
+        .addLoot(enchantedBook(0.05, "easy"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:iron_arrow", 10).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("archeryexp:gold_arrow", 5).when((c) => c.randomChance(0.12)))
@@ -1199,7 +1209,7 @@ LootJS.modifiers((event) => {
         /.*yungsbridges.*chests.*|.*chests.*yungsbridges.*|.*yungsextras.*chests.*|.*chests.*yungsextras.*|.*betterdungeons.*chests.*|.*chests.*betterdungeons.*|.*bettermineshafts.*chests.*|.*chests.*bettermineshafts.*|.*betterfortresses.*chests.*|.*chests.*betterfortresses.*|.*betterjungletemples.*chests.*|.*chests.*betterjungletemples.*|.*betterdeserttemples.*chests.*|.*chests.*betterdeserttemples.*|.*betteroceanmonuments.*chests.*|.*chests.*betteroceanmonuments.*/
     )
         //enchantments — easy tier
-        .addLoot(enchantedBook(0.05))
+        .addLoot(enchantedBook(0.05, "easy"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:iron_arrow", 10).when((c) => c.randomChance(0.20)))
         .addLoot(LootEntry.of("archeryexp:gold_arrow", 5).when((c) => c.randomChance(0.12)))
@@ -1232,7 +1242,7 @@ LootJS.modifiers((event) => {
         /.*takesapillage.*chests.*|.*chests.*takesapillage.*|.*create_pillagers.*chests.*|.*chests.*create_pillagers.*|.*savage_and_ravage.*chests.*|.*chests.*savage_and_ravage.*/
     )
         //enchantments — easy tier
-        .addLoot(enchantedBook(0.05))
+        .addLoot(enchantedBook(0.05, "easy"))
         // --- Боеприпасы ---
         .addLoot(LootEntry.of("archeryexp:iron_arrow", 12).when((c) => c.randomChance(0.2)))
         .addLoot(LootEntry.of("archeryexp:gold_arrow", 6).when((c) => c.randomChance(0.15)))
